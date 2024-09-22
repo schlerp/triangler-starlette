@@ -5,7 +5,9 @@ description = "Add your description here"
 authors = [
     { name = "PattyC", email = "patrickcoffey91@gmail.com" }
 ]
-dependencies = []
+dependencies = [
+    "starlette>=0.38.5",
+]
 readme = "README.md"
 requires-python = ">= 3.8"
 
