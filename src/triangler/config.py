@@ -1,10 +1,10 @@
 import os
 from typing import TypeVar
 
-T = TypeVar("T", bound=str | int)
+_T = TypeVar("_T", bound=str | int)
 
 
-def ensure_value_set(env_var: str, value: T | None) -> T:
+def ensure_value_set(env_var: str, value: _T | None) -> _T:
     """
     Ensure that an environment variable is set. If the environment variable is not set, raise a
     ValueError.
@@ -85,4 +85,8 @@ def get_mandatory_str_from_env(env_var: str, default: str | None = None) -> str:
 
 DEBUG = get_bool_from_env("DEBUG", False)
 
-SECRET_KEY = get_str_from_env("SECRET_KEY", "secret")
+SQLALCHEMY_DATABASE_URL = get_mandatory_str_from_env(
+    "SQLALCHEMY_DATABASE_URL", default="sqlite:///./triangler.db"
+)
+
+SECRET_KEY = get_mandatory_str_from_env("SECRET_KEY", "secret")
