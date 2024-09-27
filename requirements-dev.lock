@@ -9,6 +9,8 @@
 #   generate-hashes: false
 
 alembic==1.13.3
+annotated-types==0.7.0
+    # via pydantic
 anyio==4.6.0
     # via starlette
     # via watchfiles
@@ -32,6 +34,9 @@ packaging==24.1
     # via pytest
 pluggy==1.5.0
     # via pytest
+pydantic==2.9.2
+pydantic-core==2.23.4
+    # via pydantic
 pytest==8.3.3
 python-dotenv==1.0.1
     # via uvicorn
@@ -45,6 +50,8 @@ sqlalchemy==2.0.35
 starlette==0.38.5
 typing-extensions==4.12.2
     # via alembic
+    # via pydantic
+    # via pydantic-core
     # via sqlalchemy
 uvicorn==0.30.6
 uvloop==0.20.0
