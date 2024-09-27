@@ -11,7 +11,9 @@ _CONFIG_NAMES_WITH_TESTS: set[str] = set()
 
 C = TypeVar("C", bound=AnyTestMethod)
 
-_ALL_CONFIG_VAR_NAMES: set[str] = set(name for name in dir(config) if name.isupper())
+_ALL_CONFIG_VAR_NAMES: set[str] = set(
+    name for name in dir(config) if name.isupper() and not name.startswith("_")
+)
 
 
 def register_config_name(config_name: str) -> Callable[[C], C]:
@@ -47,9 +49,13 @@ class TestConfig:
         assert config_name in _CONFIG_NAMES_WITH_TESTS
 
     @register_config_name(config_name="DEBUG")
-    def test_debug_default_is_true(self) -> None:
+    def test_debug_default(self) -> None:
         assert config.DEBUG is False
 
     @register_config_name(config_name="SECRET_KEY")
-    def test_secret_key_default_is_true(self) -> None:
+    def test_secret_key_default(self) -> None:
         assert config.SECRET_KEY == "secret"
+
+    @register_config_name(config_name="SQLALCHEMY_DATABASE_URL")
+    def test_sqlalchemy_database_url_default(self) -> None:
+        assert config.SQLALCHEMY_DATABASE_URL == "sqlite:///./triangler.db"
