@@ -27,6 +27,7 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 def get_metadata() -> MetaData:
     from triangler.data import persistence
+    from triangler.data import models  # pyright: ignore[reportUnusedImport] # noqa: F401
 
     return persistence.Base.metadata
 
